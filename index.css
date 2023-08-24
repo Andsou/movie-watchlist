@@ -30,6 +30,8 @@ p {
     url("./images/picture-frames.jpg");
   box-shadow: 5px;
   height: 20.8rem;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .search-form {
@@ -42,6 +44,7 @@ p {
   background-position: left center;
   background-size: 20px 20px;
   background-color: #272727;
+  color: #fff;
 
   border: none;
   padding: 9px 20px;
@@ -73,6 +76,7 @@ p {
   font-weight: 700;
 }
 
+/* MOVIE CONTENT */
 .main-content {
   width: 55rem;
   margin: 0 auto;
