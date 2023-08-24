@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="index.css" />
@@ -16,22 +16,30 @@
     <section class="main-content">
       <header>
         <div class="header" id="header">
-          <h1>Find your film</h1>
-          <p>My watchlist</p>
+          <div class="flex-container titles">
+            <h1 class="title">Find your film</h1>
+            <p class="my-watchlist">My watchlist</p>
+          </div>
           <form class="search-form" id="search-from">
             <input
               type="text"
               id="search-input"
+              class="search-input"
               name="search-input"
               placeholder="Search for a movie"
               required
             />
-            <button type="submit">Search</button>
+            <button id="search-btn" class="search-btn" type="submit">
+              Search
+            </button>
           </form>
         </div>
       </header>
       <main>
-        <div class="movies"></div>
+        <div class="movies flex-container">
+          <img src="./images/icon.svg" />
+          <p class="icon-description">Start exploring</p>
+        </div>
       </main>
     </section>
     <script src="index.js" type="module"></script>
