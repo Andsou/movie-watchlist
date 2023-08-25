@@ -1,6 +1,7 @@
 const searchBtn = document.getElementById("search-btn");
 const searchInput = document.getElementById("search-input");
 const moviesDiv = document.getElementById("movies");
+const movies = document.getElementById("movie-watchlist");
 
 let movieArray = [];
 
@@ -17,7 +18,7 @@ const displayMovies = function () {
           <ul>
             <li>${movie.Runtime}</li>
             <li>${movie.Genre}</li>
-            <li><button class="add-to-watchlist">+</button>Watchlist</li>
+            <li><button class="add-to-watchlist" data-movieid="${movie.imdbID}">+</button>Watchlist</li>
           </ul>
           <p class="movie-plot">${movie.Plot}</p>
         </div>
@@ -54,10 +55,23 @@ const fetchMovies = async function () {
   }
 };
 
-searchBtn.addEventListener("click", fetchMovies);
+const addMovieToWatchList = function (movie) {
+  let watchList = JSON.parse(localStorage.getItem("movies")) || [];
 
-movies.addEventListener("click", (e) => {
+  if (!watchList.some((item) => item.imdbID === movie.imdbID)) {
+    watchList.push(movie);
+  }
+
+  localStorage.setItem("movies", JSON.stringify(watchList));
+};
+
+moviesDiv.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-to-watchlist")) {
-    console.log(e.target);
+    const movie = movieArray.find(
+      (movie) => movie.imdbID === e.target.dataset.movieid
+    );
+    addMovieToWatchList(movie);
   }
 });
+
+searchBtn.addEventListener("click", fetchMovies);
