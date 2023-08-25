@@ -19,9 +19,20 @@ p {
   margin: 0;
   padding: 0;
 }
+
+button {
+  font-family: inherit;
+}
+
 /* UTILITY CLASSES */
 .flex-container {
   display: flex;
+}
+
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* HEADER */
@@ -30,8 +41,16 @@ p {
     url("./images/picture-frames.jpg");
   box-shadow: 5px;
   height: 20.8rem;
-  flex-direction: column;
-  justify-content: space-between;
+}
+
+.my-watchlist {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.my-watchlist a {
+  text-decoration: none;
+  color: #fff;
 }
 
 /* SEARCH */
@@ -72,14 +91,6 @@ p {
 .titles {
   justify-content: space-evenly;
   align-items: center;
-
-  margin-top: 15%;
-  margin-bottom: 10%;
-}
-
-.my-watchlist {
-  font-size: 1.4rem;
-  font-weight: 700;
 }
 
 /* MOVIE CONTENT */
@@ -94,12 +105,53 @@ p {
   background-color: #0e0e0e;
   flex-direction: column;
   justify-content: center;
+  gap: 5rem;
   align-items: center;
+  overflow-y: auto;
+  min-height: 55rem;
+}
 
-  height: calc(78rem - 20.8rem);
+.movie {
+  padding: 0 4.4rem 3rem 4.4rem;
+  border-bottom: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  gap: 2.1rem;
+}
+
+.movie:first-child {
+  margin-top: 5rem;
+}
+
+.movie-poster {
+  width: 10rem;
+  height: auto;
+}
+
+.movie-plot {
+  font-size: 1.4rem;
+  color: #a5a5a5;
 }
 
 .icon-description {
   font-size: 1.8rem;
   color: #2e2e2f;
+}
+
+ul {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+ul li {
+  list-style-type: none;
+  font-size: 1.2rem;
+}
+
+.add-to-watchlist {
+  border-radius: 50%;
+  height: 1.6rem;
+  width: 1.6rem;
+  border: none;
 }
