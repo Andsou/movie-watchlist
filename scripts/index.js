@@ -4,21 +4,33 @@ const moviesDiv = document.getElementById("movies");
 const movies = document.getElementById("movie-watchlist");
 
 let movieArray = [];
+let watchList = JSON.parse(localStorage.getItem("movies")) || [];
 
 const displayMovies = function () {
   moviesDiv.innerHTML = "";
   let html = "";
 
   for (const movie of movieArray) {
+    const isMovieInWatchList = watchList.some(
+      (item) => item.imdbID === movie.imdbID
+    );
+
     html += `
       <div class="movie">
-      <img class="movie-poster" src="${movie.Poster}" onerror="this.src='./images/icon.svg'" alt="movie-poster" />
+      <img class="movie-poster" src="${
+        movie.Poster
+      }" onerror="this.src='./images/icon.svg'" alt="movie-poster" />
         <div>
           <h2>${movie.Title}</h2>
           <ul>
             <li>${movie.Runtime}</li>
             <li>${movie.Genre}</li>
-            <li><button class="add-to-watchlist" data-movieid="${movie.imdbID}">+</button>Watchlist</li>
+            <li>
+            <button class="add-to-watchlist" data-movieid="${movie.imdbID}" ${
+      isMovieInWatchList ? "disabled" : ""
+    }>+</button>
+            </li>
+            <li>Watchlist</li>
           </ul>
           <p class="movie-plot">${movie.Plot}</p>
         </div>
@@ -31,32 +43,35 @@ const displayMovies = function () {
 
 const fetchMovies = async function () {
   movieArray = [];
-
-  if (searchInput.value.trim() === "") {
-    console.log("Empty...");
-  } else {
-    const response = await fetch(
-      `http://www.omdbapi.com/?apikey=aedabea0&s=${searchInput.value}`
-    );
-    const movies = await response.json();
-
-    console.log(movies);
-
-    for (const movie of movies.Search) {
+  try {
+    if (searchInput.value.trim() === "") {
+      moviesDiv.textContent = "Could not find movie...";
+    } else {
       const response = await fetch(
-        `http://www.omdbapi.com/?apikey=aedabea0&t=${movie.Title}`
+        `http://www.omdbapi.com/?apikey=aedabea0&s=${searchInput.value}`
       );
-      const titles = await response.json();
+      const movies = await response.json();
 
-      movieArray.push(titles);
+      console.log(movies);
+
+      for (const movie of movies.Search) {
+        const response = await fetch(
+          `http://www.omdbapi.com/?apikey=aedabea0&t=${movie.Title}`
+        );
+        const titles = await response.json();
+
+        movieArray.push(titles);
+      }
+
+      displayMovies();
     }
-
-    displayMovies();
+  } catch (error) {
+    moviesDiv.textContent = "Could not find movie...";
   }
 };
 
 const addMovieToWatchList = function (movie) {
-  let watchList = JSON.parse(localStorage.getItem("movies")) || [];
+  // let watchList = JSON.parse(localStorage.getItem("movies")) || [];
 
   if (!watchList.some((item) => item.imdbID === movie.imdbID)) {
     watchList.push(movie);
@@ -70,6 +85,7 @@ moviesDiv.addEventListener("click", (e) => {
     const movie = movieArray.find(
       (movie) => movie.imdbID === e.target.dataset.movieid
     );
+    document.querySelector(`[data-movieid="${movie.imdbID}"]`).disabled = true;
     addMovieToWatchList(movie);
   }
 });

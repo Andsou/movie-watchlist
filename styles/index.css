@@ -38,7 +38,7 @@ button {
 /* HEADER */
 .header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.528), rgba(0, 0, 0, 0.854)),
-    url("./images/picture-frames.jpg");
+    url("../images/picture-frames.jpg");
   box-shadow: 5px;
   height: 20.8rem;
 }
@@ -154,4 +154,8 @@ ul li {
   height: 1.6rem;
   width: 1.6rem;
   border: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

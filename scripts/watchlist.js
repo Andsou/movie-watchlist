@@ -23,7 +23,10 @@ const displayWatchlist = function () {
             <ul>
               <li>${movie.Runtime}</li>
               <li>${movie.Genre}</li>
-              <li><button class="add-to-watchlist" data-movieid="${movie.imdbID}">+</button>Remove</li>
+              <li>
+                <button class="add-to-watchlist" data-movieid="${movie.imdbID}">-</button>
+              </li>
+              <li>Remove</li>
             </ul>
             <p class="movie-plot">${movie.Plot}</p>
           </div>
@@ -43,6 +46,7 @@ const deleteMovie = function (movieId) {
   }
 
   localStorage.setItem("movies", JSON.stringify(watchList));
+
   displayWatchlist();
 };
 
