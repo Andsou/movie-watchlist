@@ -48,7 +48,7 @@ const fetchMovies = async function () {
       moviesDiv.textContent = "Could not find movie...";
     } else {
       const response = await fetch(
-        `http://www.omdbapi.com/?apikey=aedabea0&s=${searchInput.value}`
+        `https://www.omdbapi.com/?apikey=aedabea0&s=${searchInput.value}`
       );
       const movies = await response.json();
 
@@ -56,7 +56,7 @@ const fetchMovies = async function () {
 
       for (const movie of movies.Search) {
         const response = await fetch(
-          `http://www.omdbapi.com/?apikey=aedabea0&t=${movie.Title}`
+          `https://www.omdbapi.com/?apikey=aedabea0&t=${movie.Title}`
         );
         const titles = await response.json();
 
