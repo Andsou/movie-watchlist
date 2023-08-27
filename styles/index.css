@@ -37,10 +37,11 @@ button {
 
 /* HEADER */
 .header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.528), rgba(0, 0, 0, 0.854)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.578), rgba(0, 0, 0, 0.702)),
     url("../images/picture-frames.jpg");
   box-shadow: 5px;
   height: 20.8rem;
+  margin-top: 9.2rem;
 }
 
 .my-watchlist {
