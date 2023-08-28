@@ -60,7 +60,7 @@ button {
 }
 
 .search-input {
-  background-image: url("./images/Search.svg");
+  background-image: url("../images/Search.svg");
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 20px 20px;

@@ -52,17 +52,16 @@ const fetchMovies = async function () {
       );
       const movies = await response.json();
 
-      console.log(movies);
-
       for (const movie of movies.Search) {
         const response = await fetch(
-          `https://www.omdbapi.com/?apikey=aedabea0&t=${movie.Title}`
+          `https://www.omdbapi.com/?apikey=aedabea0&i=${movie.imdbID}`
         );
         const titles = await response.json();
 
         movieArray.push(titles);
       }
 
+      console.log(movieArray);
       displayMovies();
     }
   } catch (error) {
